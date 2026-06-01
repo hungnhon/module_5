@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+</head>
+<body>
+
+<h2>Updated Successfully</h2>
+
+<p>
+    Language:
+    <span th:text="${mailSetting.language}"></span>
+</p>
+
+<p>
+    Page Size:
+    <span th:text="${mailSetting.pageSize}"></span>
+</p>
+
+<p>
+    Spam Filter:
+    <span th:text="${mailSetting.spamFilter}"></span>
+</p>
+
+<p>
+    Signature:
+</p>
+
+<p th:text="${mailSetting.signature}"></p>
+
+<a th:href="@{/}">
+    Back
+</a>
+
+</body>
+</html>
