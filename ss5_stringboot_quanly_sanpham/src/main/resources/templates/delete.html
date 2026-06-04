@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Xóa sản phẩm</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+        }
+
+        .container{
+            width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        h1{
+            color: red;
+        }
+
+        p{
+            font-size: 18px;
+        }
+
+        .btn{
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .delete{
+            background: red;
+            color: white;
+        }
+
+        .cancel{
+            background: gray;
+            color: white;
+        }
+
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>XÁC NHẬN XÓA</h1>
+
+    <p>
+        Bạn có chắc muốn xóa sản phẩm:
+        <strong th:text="${product.name}"></strong> ?
+    </p>
+
+    <form th:action="@{/products/delete}" th:object="${product}" method="post">
+
+        <input type="hidden" th:field="*{id}">
+
+        <button type="submit" class="btn delete">
+            Xóa
+        </button>
+
+        <a th:href="@{/products}" class="btn cancel">
+            Hủy
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+</html>tml>

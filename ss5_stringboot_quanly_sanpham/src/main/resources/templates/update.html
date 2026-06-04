@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Sửa sản phẩm</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background: #f4f6f9;
+        }
+
+        .container{
+            width: 600px;
+            margin: 40px auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        h1{
+            text-align: center;
+            color: #0d6efd;
+        }
+
+        input{
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .btn{
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .save{
+            background: green;
+            color: white;
+        }
+
+        .back{
+            background: gray;
+            color: white;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>SỬA SẢN PHẨM</h1>
+
+    <form th:action="@{/products/update}" th:object="${product}" method="post">
+
+        <input type="hidden" th:field="*{id}">
+
+        <label>Tên sản phẩm</label>
+        <input type="text" th:field="*{name}">
+
+        <label>Giá</label>
+        <input type="number" step="0.01" th:field="*{price}">
+
+        <label>Mô tả</label>
+        <input type="text" th:field="*{description}">
+
+        <button type="submit" class="btn save">
+            Cập nhật
+        </button>
+
+        <a th:href="@{/products}" class="btn back">
+            Quay lại
+        </a>
+
+    </form>
+
+</div>
+
+</body>
+</html>>
