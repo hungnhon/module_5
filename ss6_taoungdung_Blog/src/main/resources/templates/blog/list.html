@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layouts/layout}">
+
+<head>
+    <title>Blog List</title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+
+    <div class="card">
+
+        <div class="card-header bg-dark text-white">
+            Blog List
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-hover">
+
+                <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Action</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="blog : ${blogs}">
+
+                    <td th:text="${blog.id}"></td>
+
+                    <td th:text="${blog.title}"></td>
+
+                    <td>
+
+                        <a class="btn btn-info btn-sm"
+                           th:href="@{/blogs/view/{id}(id=${blog.id})}">
+                            View
+                        </a>
+
+                        <a class="btn btn-warning btn-sm"
+                           th:href="@{/blogs/edit/{id}(id=${blog.id})}">
+                            Edit
+                        </a>
+
+                        <a class="btn btn-danger btn-sm"
+                           th:href="@{/blogs/delete/{id}(id=${blog.id})}"
+                           onclick="return confirm('Delete blog?')">
+                            Delete
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

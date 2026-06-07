@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layouts/layout}">
+
+<head>
+    <title>Create Blog</title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+
+    <div class="card">
+
+        <div class="card-header bg-success text-white">
+            Create Blog
+        </div>
+
+        <div class="card-body">
+
+            <form th:action="@{/blogs/save}"
+                  th:object="${blog}"
+                  method="post">
+
+                <div class="mb-3">
+                    <label>Title</label>
+                    <input class="form-control"
+                           th:field="*{title}">
+                </div>
+
+                <div class="mb-3">
+                    <label>Content</label>
+                    <textarea rows="8"
+                              class="form-control"
+                              th:field="*{content}">
+                    </textarea>
+                </div>
+
+                <button class="btn btn-success">
+                    Save
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

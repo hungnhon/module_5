@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layouts/layout}">
+
+<head>
+    <title>Edit Blog</title>
+</head>
+
+<body>
+
+<div layout:fragment="content">
+
+    <div class="card">
+
+        <div class="card-header bg-warning">
+            <h3>Edit Blog</h3>
+        </div>
+
+        <div class="card-body">
+
+            <form th:action="@{/blogs/update}"
+                  th:object="${blog}"
+                  method="post">
+
+                <input type="hidden"
+                       th:field="*{id}"/>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Title
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           th:field="*{title}"/>
+
+                </div>
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Content
+                    </label>
+
+                    <textarea class="form-control"
+                              rows="8"
+                              th:field="*{content}">
+                    </textarea>
+
+                </div>
+
+                <button type="submit"
+                        class="btn btn-warning">
+                    Update
+                </button>
+
+                <a th:href="@{/blogs}"
+                   class="btn btn-secondary">
+                    Back
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
