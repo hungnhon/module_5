@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layouts/layout}">
+
+<body>
+
+<div layout:fragment="content">
+
+    ```
+    <div class="card">
+
+        <div class="card-header bg-info text-white">
+
+            <h3>Blog Detail</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <h2 th:text="${blog.title}"></h2>
+
+            <hr>
+
+            <p>
+
+                <strong>Category:</strong>
+
+                <span th:text="${blog.category.name}"></span>
+
+            </p>
+
+            <hr>
+
+            <div th:text="${blog.content}">
+            </div>
+
+            <br>
+
+            <a th:href="@{/blogs}"
+               class="btn btn-secondary">
+
+                Back
+
+            </a>
+
+        </div>
+
+    </div>
+    ```
+
+</div>
+
+</body>
+</html>

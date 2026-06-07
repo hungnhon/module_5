@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layouts/layout}">
+
+<body>
+
+<div layout:fragment="content">
+
+    ```
+    <div class="card">
+
+        <div class="card-header bg-warning">
+
+            <h3>Edit Category</h3>
+
+        </div>
+
+        <div class="card-body">
+
+            <form th:action="@{/categories/update}"
+                  th:object="${category}"
+                  method="post">
+
+                <input type="hidden"
+                       th:field="*{id}">
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Category Name
+                    </label>
+
+                    <input type="text"
+                           th:field="*{name}"
+                           class="form-control">
+
+                </div>
+
+                <button class="btn btn-warning">
+                    Update
+                </button>
+
+                <a th:href="@{/categories}"
+                   class="btn btn-secondary">
+                    Back
+                </a>
+
+            </form>
+
+        </div>
+
+    </div>
+    ```
+
+</div>
+
+</body>
+</html>

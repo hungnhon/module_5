@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+<html
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layouts/layout}">
+
+<body>
+
+<div layout:fragment="content">
+
+    ```
+    <div class="card">
+
+        <div class="card-header bg-dark text-white">
+
+            <div class="d-flex justify-content-between">
+
+                <h3>Blog List</h3>
+
+                <a th:href="@{/blogs/create}"
+                   class="btn btn-success">
+
+                    Add Blog
+
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="card-body">
+
+            <form th:action="@{/blogs}"
+                  method="get"
+                  class="row mb-3">
+
+                <div class="col-md-10">
+
+                    <input type="text"
+                           name="keyword"
+                           th:value="${keyword}"
+                           class="form-control"
+                           placeholder="Search blog title">
+
+                </div>
+
+                <div class="col-md-2">
+
+                    <button class="btn btn-primary w-100">
+                        Search
+                    </button>
+
+                </div>
+
+            </form>
+
+            <table class="table table-hover table-bordered">
+
+                <thead class="table-dark">
+
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th width="220">Action</th>
+                </tr>
+
+                </thead>
+
+                <tbody>
+
+                <tr th:each="blog : ${blogs}">
+
+                    <td th:text="${blog.id}"></td>
+
+                    <td th:text="${blog.title}"></td>
+
+                    <td th:text="${blog.category.name}"></td>
+
+                    <td>
+
+                        <a th:href="@{/blogs/view/{id}(id=${blog.id})}"
+                           class="btn btn-info btn-sm">
+
+                            View
+
+                        </a>
+
+                        <a th:href="@{/blogs/edit/{id}(id=${blog.id})}"
+                           class="btn btn-warning btn-sm">
+
+                            Edit
+
+                        </a>
+
+                        <a th:href="@{/blogs/delete/{id}(id=${blog.id})}"
+                           class="btn btn-danger btn-sm"
+                           onclick="return confirm('Delete blog ?')">
+
+                            Delete
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+            <nav>
+
+                <ul class="pagination justify-content-center">
+
+                    <li class="page-item"
+                        th:if="${blogs.hasPrevious()}">
+
+                        <a class="page-link"
+                           th:href="@{/blogs(page=${blogs.number-1},keyword=${keyword})}">
+
+                            Previous
+
+                        </a>
+
+                    </li>
+
+                    <li class="page-item disabled">
+
+                    <span class="page-link">
+
+                        Page [[${blogs.number+1}]]
+                        / [[${blogs.totalPages}]]
+
+                    </span>
+
+                    </li>
+
+                    <li class="page-item"
+                        th:if="${blogs.hasNext()}">
+
+                        <a class="page-link"
+                           th:href="@{/blogs(page=${blogs.number+1},keyword=${keyword})}">
+
+                            Next
+
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </nav>
+
+        </div>
+
+    </div>
+    ```
+
+</div>
+
+</body>
+</html>
