@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sản phẩm</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h2>DANH SÁCH SẢN PHẨM</h2>
+
+        <a class="cart-link" th:href="@{/cart}">
+            🛒 Xem giỏ hàng
+        </a>
+    </div>
+
+    <div class="product-list">
+
+        <div class="product-card"
+             th:each="product : ${products}">
+
+            <div class="new-label">
+                NEW!
+            </div>
+
+            <a th:href="@{/products/{id}(id=${product.id})}">
+
+                <img th:src="@{${product.image}}"
+                     alt="product">
+
+            </a>
+
+            <div class="product-info">
+
+                <a class="product-name"
+                   th:href="@{/products/{id}(id=${product.id})}"
+                   th:text="${product.name}">
+                </a>
+
+                <div class="price">
+
+                    <span class="old-price"
+                          th:text="${#numbers.formatDecimal(product.oldPrice,0,'COMMA',0,'POINT')} + ' đ'">
+                    </span>
+
+                    <span class="new-price"
+                          th:text="${#numbers.formatDecimal(product.newPrice,0,'COMMA',0,'POINT')} + ' đ'">
+                    </span>
+
+                </div>
+
+                <a class="btn"
+                   th:href="@{/cart/add/{id}(id=${product.id})}">
+
+                    Thêm vào giỏ
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

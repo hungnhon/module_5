@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Thanh toán</title>
+
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<div class="container">
+
+    <div class="steps">
+
+        <div class="step">
+            01. Giỏ hàng
+        </div>
+
+        <div class="step active">
+            02. Đơn hàng
+        </div>
+
+        <div class="step">
+            03. Thanh toán
+        </div>
+
+    </div>
+
+    <h2>THÔNG TIN THANH TOÁN</h2>
+
+    <form th:action="@{/cart/checkout}"
+          method="post"
+          class="checkout-form">
+
+        <label>Họ và tên</label>
+
+        <input type="text"
+               name="customerName"
+               placeholder="Nhập họ tên"
+               required>
+
+        <label>Số điện thoại</label>
+
+        <input type="text"
+               name="phone"
+               placeholder="Nhập số điện thoại"
+               required>
+
+        <label>Địa chỉ giao hàng</label>
+
+        <textarea name="address"
+                  rows="4"
+                  placeholder="Nhập địa chỉ giao hàng"
+                  required></textarea>
+
+        <h3>ĐƠN HÀNG CỦA BẠN</h3>
+
+        <div class="order-item"
+             th:each="item : ${cart}">
+
+            <p>
+
+                <span th:text="${item.product.name}"></span>
+
+                ×
+
+                <span th:text="${item.quantity}"></span>
+
+                =
+
+                <span th:text="${#numbers.formatDecimal(item.totalPrice,0,'COMMA',0,'POINT')} + ' đ'">
+                </span>
+
+            </p>
+
+        </div>
+
+        <hr>
+
+        <h3 class="checkout-total">
+
+            Tổng tiền:
+
+            <span th:text="${#numbers.formatDecimal(total,0,'COMMA',0,'POINT')} + ' đ'">
+            </span>
+
+        </h3>
+
+        <div class="checkout-action">
+
+            <a class="back-btn"
+               th:href="@{/cart}">
+
+                ← Quay lại giỏ hàng
+
+            </a>
+
+            <button type="submit"
+                    class="checkout-btn">
+
+                Xác nhận đặt hàng
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+</body>
+</html>
